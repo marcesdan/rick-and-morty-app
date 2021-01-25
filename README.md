@@ -5,8 +5,8 @@ Coding challenge using babel, sass, with a hot dev server and an optimized produ
 ## Installation
 
 ```
-git clone https://github.com/marcesdan/viapool-challenge.git mdangelo-viapool-challenge
-cd mdangelo-viapool-challenge
+git clone https://github.com/marcesdan/rick-and-morty-app.git
+cd rick-and-morty-app
 yarn / npm i
 ```
 
@@ -15,7 +15,7 @@ yarn / npm i
 ### Development server
 
 ```bash
-yarn start / npm start
+yarn dev / npm run dev
 ```
 
 You can view the development server at `localhost:8080`.

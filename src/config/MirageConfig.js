@@ -3,12 +3,8 @@ import { createServer } from 'miragejs';
 
 createServer({
   routes() {
-    this.urlPrefix = 'https://viapool.com/driver/';
-    this.get('enabled', () => [
-      'gmail.com',
-      'outlook.com',
-      'hotmail.com',
-
+    this.urlPrefix = 'https://rickandmortyapi.com/api/';
+    this.get('', () => [
     ]);
     this.post('', () => {});
   },

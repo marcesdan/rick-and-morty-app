@@ -1,7 +1,7 @@
 {
-  "name": "viapool-challenge",
+  "name": "rick-and-morty-app",
   "version": "1.0.0",
-  "description": "Viapool Challenge",
+  "description": "Rick & Morty App",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",

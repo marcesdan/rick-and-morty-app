@@ -4,10 +4,11 @@ import { useDispatch } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import StartupRedux from 'stores/StartupRedux';
 import withRoot from 'layout/withRoot';
-import DriversRedux from 'stores/DriversRedux';
+import DriversRedux from 'stores/CharactersRedux';
 import ErrorMessage from 'components/ErrorMessage';
 
-const DriverSubmit = lazy(() => import(/* webpackChunkName: "driver-submit" */ './DriverSubmit'));
+const CharactersIndex = lazy(() => import(/* webpackChunkName: "driver-submit" */ './CharactersIndex'));
+const CharactersShow = lazy(() => import(/* webpackChunkName: "driver-submit" */ './CharactersShow'));
 
 const RootContainer = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ const RootContainer = () => {
     <Sentry.ErrorBoundary fallback={ErrorMessage}>
       <Suspense fallback={<div />}>
         <Switch>
-          <Route exact path="/" component={DriverSubmit} />
-          <Route exact path="/error" component={ErrorMessage} />
+          <Route exact path="/" component={CharactersIndex} />
+          <Route exact path="/characters/:id" component={CharactersShow} />
         </Switch>
       </Suspense>
     </Sentry.ErrorBoundary>

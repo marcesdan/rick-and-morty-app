@@ -3,12 +3,12 @@ import configureStore from 'stores/CreateStore';
 import rootSaga from 'sagas';
 
 const github = require('./GithubRedux').reducer;
-const drivers = require('./DriversRedux').reducer;
+const characters = require('./CharactersRedux').reducer;
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
   github,
-  drivers,
+  characters,
 });
 
 export default () => {
