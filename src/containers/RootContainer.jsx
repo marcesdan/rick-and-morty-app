@@ -4,19 +4,20 @@ import { useDispatch } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import StartupRedux from 'stores/StartupRedux';
 import withRoot from 'layout/withRoot';
-import DriversRedux from 'stores/CharactersRedux';
+import CharactersRedux from 'stores/CharactersRedux';
 import ErrorMessage from 'components/ErrorMessage';
+import { CircularProgress } from '@material-ui/core';
 
-const CharactersIndex = lazy(() => import(/* webpackChunkName: "driver-submit" */ './CharactersIndex'));
-const CharactersShow = lazy(() => import(/* webpackChunkName: "driver-submit" */ './CharactersShow'));
+const CharactersIndex = lazy(() => import(/* webpackChunkName: "characters-index" */ './CharactersIndex'));
+const CharactersShow = lazy(() => import(/* webpackChunkName: "characters-show" */ './CharactersShow'));
 
 const RootContainer = () => {
   const dispatch = useDispatch();
   dispatch(StartupRedux.startup());
-  dispatch(DriversRedux.enabledDomainsRequest());
+  dispatch(CharactersRedux.charactersRequest());
   return (
     <Sentry.ErrorBoundary fallback={ErrorMessage}>
-      <Suspense fallback={<div />}>
+      <Suspense fallback={<CircularProgress key={0} />}>
         <Switch>
           <Route exact path="/" component={CharactersIndex} />
           <Route exact path="/characters/:id" component={CharactersShow} />

@@ -1,5 +1,5 @@
-const useReactotron = process.env.DEBUG === 'true';
-const useMirage = useReactotron;
+const useReactotron = process.env.REACTOTRON === 'true';
+const useMirage = process.env.MIRAGE === 'true';
 
 const mirageLoad = async () => useMirage && import(
   /* webpackChunkName: "mirage-config" */

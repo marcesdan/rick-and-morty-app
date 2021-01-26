@@ -7,7 +7,7 @@ import { reactotronRedux } from 'reactotron-redux';
 import Reactotron from 'reactotron-react-js';
 
 const tron = Reactotron.configure({
-  name: 'Drivers App',
+  name: 'Rick & Morty App',
   host: 'localhost',
   port: 9090,
 }).use(reactotronRedux({ onRestore: Immutable }))

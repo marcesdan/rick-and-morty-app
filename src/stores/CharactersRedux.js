@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   charactersRequest: ['filters'],
+  findCharacterRequest: ['id'],
   charactersSuccess: ['characters'],
   charactersFailure: null,
 });
@@ -17,13 +18,15 @@ export default Creators;
 export const INITIAL_STATE = Immutable({
   fetching: null,
   error: null,
-  characters: [],
+  characters: null,
+  pagesInfo: {},
 });
 
 /* ------------- Selectors ------------- */
 
 export const CharactersSelectors = {
   characters: (state) => state.characters.characters,
+  pagesInfo: (state) => state.characters.pagesInfo,
 };
 
 /* ------------- Reducers ------------- */
@@ -34,8 +37,8 @@ export const request = (state, { filters }) => state.merge({
 });
 
 // successful characters lookup
-export const success = (state, { characters }) => state.merge({
-  fetching: false, error: null, characters,
+export const success = (state, { characters: { info, results } }) => state.merge({
+  fetching: false, error: null, characters: results, pagesInfo: info,
 });
 
 // failed to get the characters
@@ -45,6 +48,7 @@ export const failure = (state) => state.merge({ fetching: false, error: true, ch
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHARACTERS_REQUEST]: request,
+  [Types.FIND_CHARACTER_REQUEST]: request,
   [Types.CHARACTERS_SUCCESS]: success,
   [Types.CHARACTERS_FAILURE]: failure,
 });

@@ -2,7 +2,7 @@
 import apisauce from 'apisauce';
 
 // our "constructor"
-const create = (baseURL = 'https://rickandmortyapi.com/api') => {
+const create = (baseURL = 'https://rickandmortyapi.com/api/character/') => {
   // ------
   // STEP 1
   // ------
@@ -34,8 +34,8 @@ const create = (baseURL = 'https://rickandmortyapi.com/api') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getCharacters = (filters) => api.get('characters', filters);
-  const findCharacter = (id) => api.get(`character/${id}`);
+  const getCharacters = (filters) => api.get('', filters);
+  const findCharacter = (id) => api.get(`${id}`);
 
   // ------
   // STEP 3

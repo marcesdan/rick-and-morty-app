@@ -4,10 +4,13 @@ import CharactersRedux from 'stores/CharactersRedux';
 export function* getCharacters(api, action) {
   const { filters } = action;
   // make the call to the api
+  console.tron.log('por pedir characters');
   const response = yield call(api.getCharacters, filters);
   if (response.ok) {
-    yield put(CharactersRedux.charactersSuccess());
+    console.tron.log('success');
+    yield put(CharactersRedux.charactersSuccess(response.data));
   } else {
+    console.tron.log(response);
     yield put(CharactersRedux.charactersFailure());
   }
 }

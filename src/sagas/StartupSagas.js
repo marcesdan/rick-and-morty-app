@@ -25,7 +25,7 @@ export function* startup() {
     subObject.circularDependency = subObject; // osnap!
     // eslint-disable-next-line no-console
     console.tron.display({
-      name: '🔥 DRIVERS APP 🔥',
+      name: '🔥 RICK & MORTY APP 🔥',
       preview: 'You should totally expand this',
       value: {
         '💃': 'Welcome to the future!',
