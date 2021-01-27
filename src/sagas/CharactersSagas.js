@@ -1,10 +1,10 @@
-import { call, put } from 'redux-saga/effects';
-import CharactersRedux from 'stores/CharactersRedux';
+import { call, put, select } from 'redux-saga/effects';
+import CharactersRedux, { CharactersSelectors } from 'stores/CharactersRedux';
 
-export function* getCharacters(api, action) {
-  const { filters } = action;
+export function* getCharacters(api) {
   // make the call to the api
   console.tron.log('por pedir characters');
+  const filters = yield select(CharactersSelectors.selectedFilters);
   const response = yield call(api.getCharacters, filters);
   if (response.ok) {
     console.tron.log('success');

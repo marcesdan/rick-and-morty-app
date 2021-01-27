@@ -29,5 +29,6 @@ export default function* root() {
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, gitHubSrv),
     takeLatest(CharactersTypes.CHARACTERS_REQUEST, getCharacters, charactersSrv),
     takeLatest(CharactersTypes.FIND_CHARACTER_REQUEST, findCharacter, charactersSrv),
+    takeLatest(CharactersTypes.CHANGE_SELECTED_FILTERS, findCharacter, charactersSrv),
   ]);
 }

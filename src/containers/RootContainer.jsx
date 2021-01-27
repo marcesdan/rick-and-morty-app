@@ -1,4 +1,6 @@
-import React, { lazy, memo, Suspense } from 'react';
+import React, {
+  lazy, memo, Suspense,
+} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as Sentry from '@sentry/react';
