@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { CircularProgress, Container } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,8 +6,6 @@ import CharactersRedux, { CharactersSelectors } from 'stores/CharactersRedux';
 import CharacterList from 'components/CharacterList';
 import CharacterFilters from 'components/CharacterFilters';
 import Typography from '@material-ui/core/Typography';
-
-
 
 export const NovedadesIndexContainer = () => {
   const dispatch = useDispatch();
@@ -17,20 +15,22 @@ export const NovedadesIndexContainer = () => {
   const pageInfo = useSelector(CharactersSelectors.pagesInfo);
   const isFetching = useSelector(CharactersSelectors.isFetching);
   const selectedFilters = useSelector(CharactersSelectors.selectedFilters);
+  const [filters, setFilters] = useState({});
   const loadMore = () => {
     if (pageInfo.next) {
       fetchCharacters();
     }
   };
   const handleChange = (e) => {
-
-  }
+    setFilters({ [e.target.name]: e.target.value });
+    const prueba = { name: 'asdasdda', status: 'live'};
+  };
   return (
     <Container maxWidth={false}>
       <Typography component="h4" variant="h4">
         Los personajes de Rick & Morty
       </Typography>
-      <CharacterFilters selectedFilters={selectedFilters} onChange={handleChange} />
+      <CharacterFilters filters={filters} onChange={handleChange} />
       <InfiniteScroll
         pageStart={0}
         loadMore={loadMore}

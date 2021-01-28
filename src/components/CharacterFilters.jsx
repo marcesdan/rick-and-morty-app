@@ -4,17 +4,18 @@ import {
   FormControl, Grid, InputLabel, MenuItem, Select, TextField,
 } from '@material-ui/core';
 
-const CharacterFilters = ({ selectedFilters: { name, status }, onChange }) => (
+const CharacterFilters = ({ filters: { name, status }, onChange }) => (
   <Grid container>
     <Box m={2}>
-      <TextField type="search" id="nombre" label="Nombre del personaje" value={name} onChange={onChange} />
+      <TextField type="search" id="name" label="Nombre del personaje" defaultValue={name} onChange={onChange} name="name" />
     </Box>
     <Box m={2}>
       <FormControl style={{ minWidth: 150 }}>
         <InputLabel id="demo-simple-select-label">Estado</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          id="status"
+          name="status"
           value={status}
           defaultValue=""
           onChange={onChange}
