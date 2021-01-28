@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   findCharacterRequest: ['id'],
   charactersSuccess: ['characters'],
   charactersFailure: null,
-  changeSelectedFilters: ['filters'],
+  changeFilter: ['filter'],
 });
 
 export const CharactersTypes = Types;
@@ -52,6 +52,18 @@ export const success = (state, { characters: { info, results } }) => state.merge
 // failed to get the characters
 export const failure = (state) => state.merge({ fetching: false, error: true, characters: [] });
 
+export const editFilter = (state, { filter }) => {
+  const auxFilter = { ...state.filters, ...filter, page: 1 };
+  if (!Object.values(filter)[0]) {
+    // evito un query param vacio
+    delete auxFilter[Object.keys(filter)[0]];
+  }
+  return state.merge({
+    filters: auxFilter,
+    characters: [],
+  });
+};
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -59,4 +71,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FIND_CHARACTER_REQUEST]: request,
   [Types.CHARACTERS_SUCCESS]: success,
   [Types.CHARACTERS_FAILURE]: failure,
+  [Types.CHANGE_FILTER]: editFilter,
 });
