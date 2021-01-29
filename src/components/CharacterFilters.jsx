@@ -2,12 +2,15 @@ import React, { memo } from 'react';
 import {
   Box, Grid, Icon, MenuItem, TextField, Typography,
 } from '@material-ui/core';
-import debounce from 'lodash/debounce';
+import DebouncedInput from 'components/DebouncedInput';
+import PropTypes from 'prop-types';
 
 const CharacterFilters = ({ filters: { name, status }, onChange }) => {
-  const handleSearch = (e) => debounce(onChange(e), 2000);
+  const handleChange = (e) => {
+    onChange({ [e.target.name]: e.target.value });
+  };
   return (
-    <>
+    <Box mt={3}>
       <Typography variant="subtitle1" gutterBottom color="primary">
         Filtros de búsqueda
         {' '}
@@ -15,12 +18,12 @@ const CharacterFilters = ({ filters: { name, status }, onChange }) => {
       </Typography>
       <Grid container>
         <Box mr={1}>
-          <TextField
+          <DebouncedInput
+            onChange={onChange}
             type="search"
             id="name"
             label="Nombre del personaje"
-            defaultValue={name}
-            onChange={handleSearch}
+            value={name}
             name="name"
             variant="filled"
           />
@@ -32,7 +35,7 @@ const CharacterFilters = ({ filters: { name, status }, onChange }) => {
             select
             label="Estado"
             value={status || ''}
-            onChange={onChange}
+            onChange={handleChange}
             variant="filled"
             style={{ minWidth: 150 }}
           >
@@ -41,8 +44,16 @@ const CharacterFilters = ({ filters: { name, status }, onChange }) => {
           </TextField>
         </Box>
       </Grid>
-    </>
+    </Box>
   );
+};
+
+CharacterFilters.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  filters: PropTypes.shape({
+    name: PropTypes.string,
+    status: PropTypes.string,
+  }).isRequired,
 };
 
 export default memo(CharacterFilters);

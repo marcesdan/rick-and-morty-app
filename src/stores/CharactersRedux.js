@@ -29,7 +29,6 @@ export const INITIAL_STATE = Immutable({
 export const CharactersSelectors = {
   characters: (state) => state.characters.characters,
   pagesInfo: (state) => state.characters.pagesInfo,
-  isFetching: (state) => state.characters.fetching,
   selectedFilters: (state) => state.characters.filters,
 };
 

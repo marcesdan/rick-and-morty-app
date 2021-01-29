@@ -20,16 +20,13 @@ export const NovedadesIndexContainer = () => {
       fetchCharacters();
     }
   };
-  const handleChange = (e) => {
-    changeFilter({ [e.target.name]: e.target.value });
-  };
 
   return (
     <Container maxWidth={false}>
       <Typography component="h4" variant="h4" gutterBottom>
         Los personajes de Rick & Morty
       </Typography>
-      <CharacterFilters filters={selectedFilters} onChange={handleChange} />
+      <CharacterFilters filters={selectedFilters} onChange={changeFilter} />
       <InfiniteScroll
         pageStart={0}
         loadMore={loadMore}

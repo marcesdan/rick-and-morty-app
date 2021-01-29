@@ -1,7 +1,7 @@
 import React, {
   lazy, memo, Suspense,
 } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Router } from '@reach/router';
 import { useDispatch } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import StartupRedux from 'stores/StartupRedux';
@@ -20,10 +20,10 @@ const RootContainer = () => {
   return (
     <Sentry.ErrorBoundary fallback={ErrorMessage}>
       <Suspense fallback={<CircularProgress key={0} />}>
-        <Switch>
-          <Route exact path="/" component={CharactersIndex} />
-          <Route exact path="/characters/:id" component={CharactersShow} />
-        </Switch>
+        <Router>
+          <CharactersIndex path="/" />
+          <CharactersShow path="/characters/:id" />
+        </Router>
       </Suspense>
     </Sentry.ErrorBoundary>
   );
